@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+title: Nonconvex regularization for sparse neural networks
+message: >-
+  software for the paper
+  https://doi.org/10.48550/arXiv.2004.11515
+type: software
+authors:
+  - given-names: Konstantin
+    family-names: Pieper
+    email: pieperk@ornl.gov
+  - given-names: Armenak
+    family-names: Petrosyan
+    email: petrosyan@math.gatech.edu
