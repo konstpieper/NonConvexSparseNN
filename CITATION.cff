@@ -11,3 +11,5 @@ authors:
   - given-names: Armenak
     family-names: Petrosyan
     email: petrosyan@math.gatech.edu
+repository-code: 'https://github.com/konstpieper/NonConvexSparseNN'
+url: 'https://doi.org/10.48550/arXiv.2004.11515'
