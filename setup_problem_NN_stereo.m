@@ -32,11 +32,14 @@ p.delta = delta;
 %% scalar problem (one dimensional output)
 p.N = 1;
 
+% input dimension
+p.dim = 1;
+
 %% size of the domain D = [-R,R]
-R = 1.;
+p.R = 1.;
 
 %% size of the ball in the projecive plane that leads to nonzero activation functions
-RO = R + sqrt(1+R^2);
+RO = p.R + sqrt(1+p.R^2);
 p.Omega = [-RO, RO];
 
 %% force coefficients to be on the upper hemisphere
@@ -49,9 +52,9 @@ p.u_zero = struct('x', zeros(1,0), 'u', zeros(p.N,0));
 
 %% observation points in D
 Npoints = 1000;
-%p.xhat = [0,sort(-R + 2*R*rand(1,Npoints -2)),1];
-p.xhat = linspace(-R, R, Npoints);
-%p.xhat = sort((R/3)*randn(1, Npoints));
+%p.xhat = [0,sort(-p.R + 2*p.R*rand(1,Npoints -2)),1];
+p.xhat = linspace(-p.R, p.R, Npoints);
+%p.xhat = sort((p.R/3)*randn(1, Npoints));
 
 %% kernel functions
 p.K = @K;

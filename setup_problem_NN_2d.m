@@ -15,9 +15,9 @@ p.dim = 2;
 p.L = 1;
 
 % relevant ball for the input weights
-R = sqrt(p.dim)*p.L;
-RO = R + sqrt(1+R^2);
-rO = -R + sqrt(1+R^2);
+p.R = sqrt(p.dim)*p.L;
+RO = p.R + sqrt(1+p.R^2);
+rO = -p.R + sqrt(1+p.R^2);
 p.Omega = [rO, RO];
 
 p.force_upper = force_upper;
