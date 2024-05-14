@@ -48,7 +48,7 @@ p.force_upper = force_upper;
 p.u_zero = struct('x', zeros(1,0), 'u', zeros(p.N,0));
 
 %% observation points in D
-Npoints = 500;
+Npoints = 1000;
 %p.xhat = [0,sort(-R + 2*R*rand(1,Npoints -2)),1];
 p.xhat = linspace(-R, R, Npoints);
 %p.xhat = sort((R/3)*randn(1, Npoints));

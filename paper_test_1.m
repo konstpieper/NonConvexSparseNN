@@ -13,7 +13,7 @@ y_d = f_d(p.xhat)';
 
 %y_d = y_d + 0.05*randn(size(y_d));
 
-alpha = .00005;
+alpha = .00001;
 
 gamma = 0;
 phi = p.Phi(p, gamma);
