@@ -14,11 +14,12 @@ f_d = @(x) sum(x(2:end,:).^2./(x(1,:)+1.05), 1) + 2*(x(1,:)+1.05).^4;
 y_d = f_d(p.xhat)';
 
 alg_opts = struct();
-alg_opts.max_step = 10;
+alg_opts.max_step = 500*100;
 alg_opts.plot_every = 0;
+alg_opts.print_every = 50;
 alg_opts.plot_final = 0;
 alg_opts.sparsification = false;
-alg_opts.TOL = 1e-6;
+alg_opts.TOL = 1e-4;
 
 alpha = .01;
 alphas = alpha*[1, 1/4, 1/16, 1/64];
@@ -37,7 +38,8 @@ for n = 1:length(alphas)
   alpha = alphas(n);
 
   alg_opts.u0 = uinit;
-  [u_l1{n}, alg_out_1{n}] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+  %[u_l1{n}, alg_out_1{n}] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+  [u_l1{n}, alg_out_1{n}] = solve_TV_GNAP(p, y_d, alpha, phi, alg_opts);
 
   uinit = u_l1{n};
 
@@ -70,7 +72,8 @@ for n = 1:length(alphas)
   alpha = alphas(n);
 
   alg_opts.u0 = uinit;
-  [u_opt{n}, alg_out{n}] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+  %[u_opt{n}, alg_out{n}] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+  [u_opt{n}, alg_out{n}] = solve_TV_GNAP(p, y_d, alpha, phi, alg_opts);
 
   uinit = u_opt{n};
 

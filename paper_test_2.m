@@ -12,8 +12,9 @@ f_d = @(x) cos(10*x(1,:).*x(2,:)) .* exp(-sum(4*x.^2,1)/2);
 y_d = f_d(p.xhat)';
 
 alg_opts = struct();
-alg_opts.max_step = 15;
-alg_opts.plot_every = 1;
+alg_opts.max_step = 50*100;
+alg_opts.plot_every = 5*100;
+alg_opts.print_every = 50;
 alg_opts.sparsification = false;
 alg_opts.TOL = 1e-6;
 alg_opts.optimize_x = true;
@@ -23,7 +24,8 @@ alpha = .00001;
 gamma = 0;
 phi = p.Phi(p, gamma);
 
-[u_l1, alg_out_1] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+%[u_l1, alg_out_1] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+[u_l1, alg_out_1] = solve_TV_GNAP(p, y_d, alpha, phi, alg_opts);
 
 
 figure(1);
@@ -41,7 +43,9 @@ l2_err_l1 = sqrt(2*p.obj.F(p.K(p, p.xhat, u_l1_pp)-y_d))
 gamma = 5;
 phi = p.Phi(p, gamma);
                                 %alg_opts.u0 = u_l1;
-[u_opt, alg_out] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+%[u_opt, alg_out] = PDAPmultisemidiscrete(p, y_d, alpha, phi, alg_opts);
+[u_opt, alg_out] = solve_TV_GNAP(p, y_d, alpha, phi, alg_opts);
+
 
 figure(3);
 p.plot_adjoint(p, u_opt, p.obj.dF(p.K(p, p.xhat, u_opt)-y_d), alpha)
